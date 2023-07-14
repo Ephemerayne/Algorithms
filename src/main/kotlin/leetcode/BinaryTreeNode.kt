@@ -28,6 +28,6 @@ data class BinaryTreeNode(var value: Int) {
     }
 }
 
-data class TreeNode(var value: Int) {
-    var children: List<TreeNode> = listOf()
+data class TreeNodeWithChildrens(var value: Int) {
+    var children: List<TreeNodeWithChildrens> = listOf()
 }

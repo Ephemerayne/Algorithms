@@ -18,7 +18,7 @@ invertTree(
 )
 }
 
-fun invertTree(root: BinaryTreeNode?): BinaryTreeNode? {
+private fun invertTree(root: BinaryTreeNode?): BinaryTreeNode? {
    if (root == null) return null
 
     val queue: Queue<BinaryTreeNode> = LinkedList()

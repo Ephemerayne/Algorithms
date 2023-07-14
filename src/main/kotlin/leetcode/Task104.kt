@@ -13,7 +13,7 @@ fun Task104() {
     })
 }
 
-fun maxDepth(root: BinaryTreeNode?): Int {
+private fun maxDepth(root: BinaryTreeNode?): Int {
     if (root == null) return 0
 
     val levelContainer = mutableListOf<BinaryTreeNode>()

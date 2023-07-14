@@ -21,7 +21,7 @@ fun task617() {
     )
 }
 
-fun mergeTrees(root1: BinaryTreeNode?, root2: BinaryTreeNode?): BinaryTreeNode? {
+private fun mergeTrees(root1: BinaryTreeNode?, root2: BinaryTreeNode?): BinaryTreeNode? {
     if (root1 == null) return root2
     if (root2 == null) return root1
 

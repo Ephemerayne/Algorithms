@@ -13,7 +13,7 @@ fun Task637() {
     })
 }
 
-fun averageOfLevels(root: BinaryTreeNode?): DoubleArray {
+private fun averageOfLevels(root: BinaryTreeNode?): DoubleArray {
     if (root == null) return doubleArrayOf()
 
     val levelContainer = mutableListOf<BinaryTreeNode>()
