@@ -3,6 +3,7 @@ import leetcode.*
 import leetcode.Task733
 import org.w3c.dom.ranges.Range
 import java.util.*
+import kotlin.collections.List
 
 private data class Singleton private constructor(val age: Int) {
 
@@ -24,7 +25,7 @@ private fun mapIntToDouble(a: Int, b: Int): Int {
 
 val x = 1
 fun main(args: Array<String>) {
-    Task2415()
+    Task1448()
 //    var prop = "abc"::length
 //    println(prop.get())   // выведет "3"
 
