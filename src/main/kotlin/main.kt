@@ -1,9 +1,9 @@
-import codewars.*
-import leetcode.*
-import leetcode.Task733
-import org.w3c.dom.ranges.Range
+import kotlinx.coroutines.*
+import leetcode.Task1123
+import leetcode.Task783
+import leetcode.Task897
+import leetcode.Task938
 import java.util.*
-import kotlin.collections.List
 
 private data class Singleton private constructor(val age: Int) {
 
@@ -24,8 +24,45 @@ private fun mapIntToDouble(a: Int, b: Int): Int {
 }
 
 val x = 1
-fun main(args: Array<String>) {
-    Task1448()
+suspend fun main(args: Array<String>) {
+    Task1123()
+  /*  val test = IntArray(10)
+    println("debug: ${test.toList()}")*/
+/*    val mapTest: SortedMap<String, Int> = sortedMapOf(
+        "Test" to 5,
+        "Meow" to 10,
+        "Abc" to 29
+    )
+
+    println("debug: $mapTest")*/
+    /*CoroutineScope(Dispatchers.Unconfined).launch {
+
+        launch {
+            delay(1000)
+            println("FIRST LAUNCH: ${Thread.currentThread().name}")
+        }*/
+
+//        (1..1000000).forEach {
+//            println("FIRST LAUNCH: ${Thread.currentThread().name}")
+//        }
+//        delay(10)
+//        println("Second LAUNCH: ${Thread.currentThread().name}")
+
+       /* launch {
+            println("SECOND LAUNCH BEFORE DELAY: ${Thread.currentThread().name})")
+            delay(1000)
+            println("SECOND LAUNCH AFTER DELAY: ${Thread.currentThread().name})")
+        }
+
+        withContext(Dispatchers.Unconfined) {
+            println("THIRD LAUNCH WITH CONTEXT: ${Thread.currentThread().name})")
+        }
+*/
+      //  println("FOURTH LAUNCH:  ${Thread.currentThread().name}")
+    }
+
+//    Thread.sleep(3000)
+    //   QueueTest()
 //    var prop = "abc"::length
 //    println(prop.get())   // выведет "3"
 
@@ -57,7 +94,7 @@ fun main(args: Array<String>) {
 //        }
 //        num1--
 //    }
-}
+//}
 
 
 //fun main(args: Array<String>) {

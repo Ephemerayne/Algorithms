@@ -15,6 +15,7 @@ data class BinaryTreeNode(var value: Int) {
 
         while (queue.isNotEmpty()) {
             val polled = queue.poll()
+
             sb.append("${polled?.value}, ")
 
             if (polled==null) continue

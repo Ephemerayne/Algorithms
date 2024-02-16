@@ -22,8 +22,8 @@ package patterns
  */
 
 interface Adapter<T> {
-    fun getItem(position: Int) : T
-    fun getItemCount() : Int
+    fun getItem(position: Int): T
+    fun getItemCount(): Int
 }
 
 /**
@@ -42,7 +42,7 @@ class RecyclerView<T> {
      *
      * @return returns a list of elements to test
      */
-    fun draw() : List<T> {
+    fun draw(): List<T> {
         val items = mutableListOf<T>()
         val myAdapter = adapter
         if (myAdapter != null) {
@@ -54,4 +54,51 @@ class RecyclerView<T> {
         }
         return items
     }
+}
+
+
+
+
+
+
+
+
+
+/* ПРИМЕР 2 */
+
+// Существующий класс с несовместимым интерфейсом
+class Adaptee {
+    fun specificRequest(): String {
+        return "Specific request"
+    }
+}
+
+// Целевой интерфейс, который ожидает клиентский код
+interface Target {
+    fun request(): String
+}
+
+// Адаптер, преобразующий интерфейс Adaptee в Target
+class Adapterr(private val adaptee: Adaptee) : Target {
+    override fun request(): String {
+        return "Adapter: ${adaptee.specificRequest()}"
+    }
+}
+
+// Клиентский код, ожидающий объект типа Target
+fun clientCode(target: Target) {
+    println(target.request())
+}
+
+// Пример использования
+
+fun main() {
+// Создаем объект Adaptee
+    val adaptee = Adaptee()
+
+// Создаем адаптер, который преобразует интерфейс Adaptee в Target
+    val adapter = Adapterr(adaptee)
+
+// Клиентский код работает с объектом типа Target
+    clientCode(adapter)
 }

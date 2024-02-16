@@ -47,33 +47,54 @@ package patterns
 Значит, нужен другой метод, который бы отдавал как существующие, так и новые объекты. Им и станет фабричный метод.
  */
 
-abstract class Pony4
+// Интерфейс продукта
+interface Product {
+    fun create(): String
+}
 
-class EarthPony4 : Pony4()
-class Pegasus4 : Pony4()
-class Unicorn4 : Pony4()
-
-abstract class Place {
-    private var numberOfPonies = 0
-
-    abstract fun pony() : Pony4
-
-    fun newPony() : Pony4 {
-        numberOfPonies++
-        return pony()
+// Конкретные продукты
+class ConcreteProductA : Product {
+    override fun create(): String {
+        return "Product A"
     }
-
-    fun count() = numberOfPonies
 }
 
-class Cloudsdale : Place() {
-    override fun pony() = Pegasus4()
+class ConcreteProductB : Product {
+    override fun create(): String {
+        return "Product B"
+    }
 }
 
-class Canterlot : Place() {
-    override fun pony() = Unicorn4()
+// Интерфейс создателя (фабричного метода)
+interface Creator {
+    fun factoryMethod(): Product
 }
 
-class Ponyville : Place() {
-    override fun pony() = EarthPony4()
+// Конкретные создатели
+class ConcreteCreatorA : Creator {
+    override fun factoryMethod(): Product {
+        return ConcreteProductA()
+    }
+}
+
+class ConcreteCreatorB : Creator {
+    override fun factoryMethod(): Product {
+        return ConcreteProductB()
+    }
+}
+
+// Пример использования
+
+fun main() {
+
+// Создаем объекты с использованием фабричных методов
+val creatorA: Creator = ConcreteCreatorA()
+val creatorB: Creator = ConcreteCreatorB()
+
+val productA: Product = creatorA.factoryMethod()
+val productB: Product = creatorB.factoryMethod()
+
+// Выводим результат создания
+println(productA.create()) // Вывод: Product A
+println(productB.create()) // Вывод: Product B
 }

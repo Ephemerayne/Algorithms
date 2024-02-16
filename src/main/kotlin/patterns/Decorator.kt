@@ -69,3 +69,34 @@ class ExclamationPrinter(private val printer: MyPrinter) : MyPrinter {
         return "${printer.printedText()}!"
     }
 }
+
+/* Делегирование
+* Делегирование представляет паттерн объектно-ориентированного программирования, который позволяет одному объекту
+* делегировать/перенаправить все запросы другому объекту. В определенной степени делегирование может выступать
+* альтернативой наследованию. И преимуществом Kotlin в данном случае состоит в том, что Kotlin нативно поддерживает
+* данный паттерн, предоставляя необходимый инструментарий.
+*
+* Это т.н. шаблон "Декоратор".
+Бывает нужно добавить функциональность к уже имеющемуся классу (сохранив при этом уже имеющуюся функциональность или
+* возможно изменить только часть методов-родителя); сам класс для изменения может быть недоступен (например, Collections)
+* */
+
+interface Base {
+    fun someFun()
+}
+
+class BaseImpl() : Base {
+    override fun someFun() { }
+}
+
+class Derived(someBase: Base) : Base by someBase
+
+class Test(val list: ArrayList<String>): List<String> by list {
+    fun hello() {
+        list.listIterator()
+    }
+
+    override fun isEmpty(): Boolean {
+        TODO("Not yet implemented")
+    }
+}

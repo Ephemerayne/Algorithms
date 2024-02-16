@@ -29,7 +29,7 @@ package patterns
  */
 
 interface ExchangeStrategy {
-    fun into(price: Double) : Double
+    fun into(price: Double): Double
 
     class Dollar : ExchangeStrategy {
         override fun into(price: Double): Double {
@@ -45,11 +45,55 @@ interface ExchangeStrategy {
 }
 
 class RubleExchangeRate {
-    private var strategy : ExchangeStrategy = ExchangeStrategy.Dollar()
+    private var strategy: ExchangeStrategy = ExchangeStrategy.Dollar()
 
     fun changeStrategy(strategy: ExchangeStrategy) {
         this.strategy = strategy
     }
 
     fun exchange(priceInRuble: Double) = strategy.into(priceInRuble)
+}
+
+
+/* ПРИМЕР 2 */
+
+// Интерфейс стратегии
+interface PaymentStrategy {
+    fun pay(amount: Int)
+}
+
+// Конкретные стратегии
+class CreditCardPaymentStrategy(private val cardNumber: String) : PaymentStrategy {
+    override fun pay(amount: Int) {
+        println("Paid $amount using credit card $cardNumber")
+    }
+}
+
+class PayPalPaymentStrategy(private val email: String) : PaymentStrategy {
+    override fun pay(amount: Int) {
+        println("Paid $amount using PayPal with email $email")
+    }
+}
+
+// Класс, использующий стратегию
+class ShoppingCart(private val paymentStrategy: PaymentStrategy) {
+    fun checkout(amount: Int) {
+        paymentStrategy.pay(amount)
+    }
+}
+
+// Пример использования
+
+fun main() {
+// Создаем стратегии оплаты
+    val creditCardStrategy = CreditCardPaymentStrategy("1234-5678-9876-5432")
+    val paypalStrategy = PayPalPaymentStrategy("user@example.com")
+
+// Создаем объекты с использованием стратегий оплаты
+    val shoppingCart1 = ShoppingCart(creditCardStrategy)
+    val shoppingCart2 = ShoppingCart(paypalStrategy)
+
+// Выполняем оплату с использованием соответствующих стратегий
+    shoppingCart1.checkout(100)
+    shoppingCart2.checkout(50)
 }

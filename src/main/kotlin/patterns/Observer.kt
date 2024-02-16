@@ -63,5 +63,73 @@ class PonyList : Observable {
     override fun notifyObservers() {
         observers.forEach { observer -> observer.update(ponies) }
     }
+}
 
+/* ПРИМЕР 2 */
+
+// Интерфейс для наблюдателя
+interface Observerr {
+    fun update(message: String)
+}
+
+// Конкретный класс наблюдателя
+class ConcreteObserver(private val name: String) : Observerr {
+    override fun update(message: String) {
+        println("$name received message: $message")
+    }
+}
+
+// Интерфейс для субъекта (наблюдаемого объекта)
+interface Subject {
+    fun addObserver(observer: Observerr)
+    fun removeObserver(observer: Observerr)
+    fun notifyObservers(message: String)
+}
+
+// Конкретный класс субъекта
+class ConcreteSubject : Subject {
+    private val observers = mutableListOf<Observerr>()
+
+    override fun addObserver(observer: Observerr) {
+        observers.add(observer)
+    }
+
+    override fun removeObserver(observer: Observerr) {
+        observers.remove(observer)
+    }
+
+    override fun notifyObservers(message: String) {
+        for (observer in observers) {
+            observer.update(message)
+        }
+    }
+
+    fun doSomethingImportant() {
+        // Выполняем какие-то действия
+        println("Something important happened!")
+        // Уведомляем наблюдателей
+        notifyObservers("Something important happened!")
+    }
+}
+
+// Пример использования
+
+fun main() {
+// Создаем наблюдателей
+    val observer1 = ConcreteObserver("Observer 1")
+    val observer2 = ConcreteObserver("Observer 2")
+
+// Создаем наблюдаемый объект
+    val subject = ConcreteSubject()
+
+// Добавляем наблюдателей к наблюдаемому объекту
+    subject.addObserver(observer1)
+    subject.addObserver(observer2)
+
+// Наблюдаемый объект выполняет какие-то действия
+    subject.doSomethingImportant()
+
+// Вывод:
+// Observer 1 received message: Something important happened!
+// Observer 2 received message: Something important happened!
 }
